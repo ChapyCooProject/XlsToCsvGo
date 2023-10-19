@@ -1,0 +1,36 @@
+
+※このファイルの内容は参考程度としてください。
+
+::【プロジェクト用フォルダ作成】
+mkdir C:\XlsToCsv
+
+::【ディレクトリへ移動】
+cd C:\XlsToCsv
+
+::【Go Modulesの初期化】
+go mod init MyProjects.com/XlsToCsv
+
+
+::【直接Goファイルを実行】
+cd C:\XlsToCsvGo\main_console
+go run . -d=tab -p=oresama -f="C:\XlsToCsvGo\main_console\build\testXLSX.xlsx"
+go run . -h
+
+
+::【64bitビルド】
+cd C:\XlsToCsvGo\main_console
+set GOOS=windows
+set GOARCH=amd64
+go build -o build\ExcelToCsvGoc.exe -trimpath
+
+::【32bitビルド】
+cd C:\XlsToCsvGo\main_console
+set GOOS=windows
+set GOARCH=386
+go build -o build\ExcelToCsvGoc_x86.exe -trimpath
+
+
+::【ビルドEXEテスト】
+cd C:\XlsToCsvGo\main_console\build
+ExcelToCsvGoc.exe -d=tab -f="testXLSX.xlsx"
+ExcelToCsvGoc.exe -d=comma -p=hitpass -f="testXLSXP.xlsx"
