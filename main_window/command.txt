@@ -1,0 +1,32 @@
+
+※このファイルの内容は参考程度としてください。
+
+::【プロジェクト用フォルダ作成】
+mkdir C:\XlsToCsv
+
+::【ディレクトリへ移動】
+cd C:\XlsToCsv
+
+::【Go Modulesの初期化】
+go mod init MyProjects.com/XlsToCsv
+
+
+::【パッケージ更新】
+cd C:\XlsToCsv\main_window
+go mod tidy
+go get
+
+
+::【64bitビルド】
+cd C:\XlsToCsv\main_window
+set GOOS=windows
+set GOARCH=amd64
+go build -o build\ExcelToCsvGow.exe -trimpath -ldflags="-H windowsgui"
+
+::【32bitビルド】
+cd C:\XlsToCsv\main_window
+set GOOS=windows
+set GOARCH=386
+go build -o build\ExcelToCsvGow_x86.exe -trimpath -ldflags="-H windowsgui"
+
+
